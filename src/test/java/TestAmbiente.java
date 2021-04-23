@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestAmbiente {
 
-    public static final int TIME = 500;
+    public static final int TIME = 100;
 //    ChromeOptions options;
     WebDriver driver;
 
@@ -52,7 +52,7 @@ public class TestAmbiente {
         Assert.assertEquals("Success!", findByIdElement("message").getText());
         Assert.assertEquals(urlSave, driver.getCurrentUrl());
 
-        Thread.sleep(5_000);
+//        Thread.sleep(5_000);
         driver.quit();
     }
 
@@ -69,9 +69,9 @@ public class TestAmbiente {
 
             Assert.assertEquals("Due date must not be in past", findByIdElement("message").getText());
 
-            Thread.sleep(2_000);
-            driver.navigate().back();
-            Thread.sleep(2_000);
+//            Thread.sleep(2_000);
+//            driver.navigate().back();
+//            Thread.sleep(2_000);
         }finally {
             driver.quit();
         }
@@ -90,9 +90,9 @@ public class TestAmbiente {
 
             Assert.assertEquals("Fill the due date", findByIdElement("message").getText());
 
-            Thread.sleep(2_000);
-            driver.navigate().back();
-            Thread.sleep(2_000);
+//            Thread.sleep(2_000);
+//            driver.navigate().back();
+//            Thread.sleep(2_000);
         }finally {
             driver.quit();
         }
@@ -111,9 +111,9 @@ public class TestAmbiente {
 
             Assert.assertEquals("Fill the task description", findByIdElement("message").getText());
 
-            Thread.sleep(2_000);
-            driver.navigate().back();
-            Thread.sleep(2_000);
+//            Thread.sleep(2_000);
+//            driver.navigate().back();
+//            Thread.sleep(2_000);
         }finally {
             driver.quit();
         }
