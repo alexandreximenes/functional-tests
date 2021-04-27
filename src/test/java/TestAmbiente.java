@@ -6,13 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class TestAmbiente {
 
     public static final int TIME = 100;
-//    ChromeOptions options;
+    ChromeOptions options;
     WebDriver driver;
 
     @Before
@@ -20,15 +24,17 @@ public class TestAmbiente {
 //        String property = System.setProperty("webdriver.chrome.driver", "caminho/pasta/chromedriver");
 //        System.setProperty("webdriver.chrome.whitelistedIps", "");
 
-//        options = new ChromeOptions();
-//        options.addArguments("--allowed-ips", "--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        options = new ChromeOptions();
+        options.addArguments("--allowed-ips", "--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
 
     }
 
-    public WebDriver getWebDriver(){
-        WebDriver driver = new ChromeDriver();
+    public WebDriver getWebDriver() throws MalformedURLException {
+//        WebDriver driver = new ChromeDriver();
+        DesiredCapabilities cap = DesiredCapabilities.chrome();
+        WebDriver driver = new RemoteWebDriver(new URL("http://172.17.0.1:4444/wd/hub"), cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.navigate().to("http://localhost:8001/tasks/");
+        driver.navigate().to("http://172.17.0.1:8001/tasks/");
 
         return driver;
     }
@@ -39,7 +45,7 @@ public class TestAmbiente {
     }
 
     @Test
-    public void deveSalvarTarefaComSucesso() throws InterruptedException {
+    public void deveSalvarTarefaComSucesso() throws InterruptedException, MalformedURLException {
 
         driver = getWebDriver();
 
@@ -57,7 +63,7 @@ public class TestAmbiente {
     }
 
     @Test
-    public void naoDeveSalvarTarefaComSucesso() throws InterruptedException {
+    public void naoDeveSalvarTarefaComSucesso() throws InterruptedException, MalformedURLException {
 
         driver = getWebDriver();
 
@@ -78,7 +84,7 @@ public class TestAmbiente {
     }
 
     @Test
-    public void naoDeveSalvarTarefaSemData() throws InterruptedException {
+    public void naoDeveSalvarTarefaSemData() throws InterruptedException, MalformedURLException {
 
         driver = getWebDriver();
 
@@ -99,7 +105,7 @@ public class TestAmbiente {
     }
 
     @Test
-    public void naoDeveSalvarTarefaSemDescricao() throws InterruptedException {
+    public void naoDeveSalvarTarefaSemDescricao() throws InterruptedException, MalformedURLException {
 
         driver = getWebDriver();
 
