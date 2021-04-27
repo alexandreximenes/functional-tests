@@ -53,7 +53,7 @@ public class TestAmbiente {
         findByIdElement("task").sendKeys("Teste via selenium");
         findByIdElement("dueDate").sendKeys("10/10/2030");
         findByIdElement("saveButton").click();
-        String urlSave = "http://localhost:8001/tasks/save";
+        String urlSave = "http://172.17.0.1:8001/tasks/save";
 
         Assert.assertEquals("Success!", findByIdElement("message").getText());
         Assert.assertEquals(urlSave, driver.getCurrentUrl());
